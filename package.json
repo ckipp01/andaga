@@ -9,6 +9,7 @@
   "author": "Chris Kipp",
   "license": "MIT",
   "dependencies": {
-    "commander": "^2.12.2"
+    "commander": "^2.12.2",
+    "sqlite3": "^3.1.13"
   }
 }
