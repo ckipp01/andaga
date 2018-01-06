@@ -2,6 +2,9 @@
   "name": "andaga",
   "version": "0.0.1",
   "description": "Personal time and efficiency tracker",
+  "bin": {
+    "andaga": "index.js"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
