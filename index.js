@@ -29,7 +29,7 @@ program
     .option('-s | --social', 'signifies social')
     .option('-d | --date <date>', 'specifies the date')
     .option('-p | --place <place>', 'location activity was done')
-    .action(list.getEntries)
+    .action(list.formListQuery)
 
 program
     .command('tell all')
