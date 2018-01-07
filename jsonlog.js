@@ -7,14 +7,13 @@ const JSONStore = (entry, js) => {
         jlogs = require('./gemynd.json');
         let numEntries = Object.keys(jlogs).length;
         jlogs[numEntries + 1] = entry
-        console.log('exists');
     } else {
         jlogs = {1 : entry};
     }
 
     fs.writeFile('gemynd.json', JSON.stringify(jlogs), 'utf8', (err) => {
         if (err) throw err;
-        console.log('ándaga remembers');
+        console.log('\n-|-|-|- ándaga remembers -|-|-|-');
     });
 
 };
