@@ -11,6 +11,7 @@ const dbLog = (entry, time, options) => {
     if (options.learn) ea[1] = 'learn';
     if (options.act) ea[1] = 'act';
     if (options.rest) ea[1] = 'rest';
+    if (options.social) ea[1] = 'social';
     ea[2] = time;
     ea[3] = entry;
     (options.place) ? ea[4] = options.place : null;

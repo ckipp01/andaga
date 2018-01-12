@@ -54,9 +54,9 @@ const formListQuery = (amount, number, options) => {
 
 
 const getEntries = (query) => {
+    console.log('\n')
     db.each(query, (err, row) => {
-        console.log('\n'+  row.date + ' -|- ' + row.category + ' -|- ' + row.time + ' -|- ' + row.notes + ' -|- ' + row.place + '\n');
-        // console.log(row);
+        console.log(row.date + ' -|- ' + row.category + ' -|- ' + row.time + ' -|- ' + row.notes + ' -|- ' + row.place + '\n');
     });
             
     db.close();

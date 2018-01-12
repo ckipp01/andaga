@@ -3,17 +3,20 @@ const fs    = require('fs');
 const JSONStore = (entry, js) => {
 
     let jlogs;
+    let numEntries;
     if (fs.existsSync('./gemynd.json')) {
-        jlogs = require('./gemynd.json');
-        let numEntries = Object.keys(jlogs).length;
-        jlogs[numEntries + 1] = entry
+        jlogs = require('../gemynd.json');
+        oldEntries = Object.keys(jlogs).lenght;
+        numEntries = oldEntries + 1;
+        jlogs[numEntries] = entry
     } else {
         jlogs = {1 : entry};
+        numEntries = 1;
     }
 
     fs.writeFile('gemynd.json', JSON.stringify(jlogs), 'utf8', (err) => {
         if (err) throw err;
-        console.log('\n-|-|-|- ándaga remembers -|-|-|-');
+        console.log('\n-|-|-|-  ándaga remembers  -|-|-|- \n -|-|-  total memories : ' + numEntries + '  -|-|-');
     });
 
 };
