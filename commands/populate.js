@@ -4,38 +4,52 @@ const sqlite3   = require('sqlite3').verbose(),
 
 
 
-const populate = () => {
 
-    if (fs.existsSync('./gemynd.json')) {
-
-        const jlogs = require('../gemynd.json');
-        let jsonLength = (Object.keys(jlogs).length);
-        let oldEntryNumber;
-
-        db.serialize(() => {
-            db.run('CREATE TABLE IF NOT EXISTS gemynd (date TEXT, category TEXT, time INT, notes TEXT, place TEXT)');
+const getTotals = (callback) => {
+    let total;
+    db.serialize(() => {
+        db.run('CREATE TABLE IF NOT EXISTS gemynd (date TEXT, category TEXT, time INT, notes TEXT, place TEXT)', () => {
             db.get('SELECT COUNT(*) FROM gemynd', (err, row) => {
                 if (err) {
                     throw err;
                 } else {
-                    oldEntryNumber = row[Object.keys(row)[0]];
+                    total = row[Object.keys(row)[0]];
+                    callback(total);
                 }
             });
+        });
+    })
+}
 
-
-            for (var key in jlogs) {
-                if (jlogs.hasOwnProperty(key)) {
-                    db.run(jlogs[key], (err) => {
-                        if (err)
-                            throw err;
-                    });
-                }
+const enterRecords = (obj, callback) => {
+    db.serialize(() => {
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                db.run(obj[key], (err) => {
+                    if (err)
+                        throw err;
+                });
             }
-        })
-        db.close();
-    } else {
-        console.log('gemynd not found');
-    }
+        }
+    })
+    callback();
+}
+
+const populate = () => {
+    getTotals( (e) => {
+        console.log('begginging total = ' + e)
+        if (fs.existsSync('./gemynd.json')) {
+            const jlogs = require('../gemynd.json');
+            let jsonLength = (Object.keys(jlogs).length);
+            enterRecords(jlogs, () => {
+                getTotals( (l) => {
+                    console.log('ending total = ' + l);
+                });
+            });
+        } else {
+            console.log('gemynd not found');
+        }
+    });
 }
 
 module.exports.populate = populate;
