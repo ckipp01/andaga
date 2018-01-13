@@ -46,9 +46,9 @@ program
 program
     .command('populate')
     .description('runs through the json and populates the db')
-    .action(populate)
+    .action(populate.populate)
 
 program.parse(process.argv);
 
 if (program.args.length === 0) 
-    console.log('\n -|-|-|-|-|-  log and ándaga will remember  -|-|-|-|-|-\n |-|-|-|-|-  ask me to list and I will show  -|-|-|-|-|\n -|-|-|-  ask me to tell and I will do the math  -|-|-|-\n -|-|-|-|-  ask for help and it will be given  -|-|-|-|- ')
+    console.log('\n -|-|-|-|-|-  log and ándaga will remember  -|-|-|-|-|-\n |-|-|-|-|-  ask me to list and I will show  -|-|-|-|-|\n -|-|-|-  ask me to tell and I will do the math  |-|-|-\n |-|-|-|-  ask for help and it will be given  |-|-|-|-| ')

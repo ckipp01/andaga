@@ -6,7 +6,7 @@ const JSONStore = (entry, js) => {
     let numEntries;
     if (fs.existsSync('./gemynd.json')) {
         jlogs = require('../gemynd.json');
-        oldEntries = Object.keys(jlogs).lenght;
+        oldEntries = Object.keys(jlogs).length;
         numEntries = oldEntries + 1;
         jlogs[numEntries] = entry
     } else {
