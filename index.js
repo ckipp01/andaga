@@ -4,9 +4,10 @@
 const program       = require('commander'),
         pkg         = require('./package.json'),
         log         = require('./commands/dblog'),
-        list        = require('./commands//list'),
+        list        = require('./commands/list'),
         tell        = require('./commands/tell'),
-        populate    = require('./commands/populate');
+        populate    = require('./commands/populate'),
+        backup      = require('./commands/backup');
 
 
 program
@@ -47,6 +48,11 @@ program
     .command('populate')
     .description('runs through the json and populates the db')
     .action(populate.populate)
+
+program
+    .command('backup')
+    .description('backs up your json file')
+    .action(backup.duplicate)
 
 program.parse(process.argv);
 

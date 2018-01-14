@@ -1,6 +1,7 @@
 const sqlite3   = require('sqlite3').verbose(),
         db      = new sqlite3.Database('gemynd.db'),
-        fs      = require('fs');
+        fs      = require('fs'),
+        backup  = require('./backup');
 
 
 
@@ -36,18 +37,19 @@ const enterRecords = (obj, callback) => {
 }
 
 const populate = () => {
+    backup.duplicate();
     getTotals( (e) => {
-        console.log('begginging total = ' + e)
+        console.log('ándaga logs prior to populate = ' + e)
         if (fs.existsSync('./gemynd.json')) {
             const jlogs = require('../gemynd.json');
             let jsonLength = (Object.keys(jlogs).length);
             enterRecords(jlogs, () => {
                 getTotals( (l) => {
-                    console.log('ending total = ' + l);
+                    console.log('ándaga logs after populate = ' + l);
                 });
             });
         } else {
-            console.log('gemynd not found');
+            console.log(' -|- ándaga error -|- \n\n gemynd not found');
         }
     });
 }

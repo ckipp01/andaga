@@ -56,7 +56,11 @@ const formListQuery = (amount, number, options) => {
 const getEntries = (query) => {
     console.log('\n')
     db.each(query, (err, row) => {
-        console.log(row.date + ' -|- ' + row.category + ' -|- ' + row.time + ' -|- ' + row.notes + ' -|- ' + row.place + '\n');
+        if (err) {
+            console.log(' -|- ándaga error -|- \n\n' + err);
+        } else {
+            console.log(row.date + ' -|- ' + row.category + ' -|- ' + row.time + ' -|- ' + row.notes + ' -|- ' + row.place + '\n');
+        }
     });
             
     db.close();
