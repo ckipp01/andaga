@@ -31,7 +31,6 @@ where.form = (query, options, callback) => {
                     }
                     i++;
                     break;
-        
             }
         });
         callback(query + whereClause);
