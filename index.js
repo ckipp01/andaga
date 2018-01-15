@@ -34,7 +34,7 @@ program
     .action(list.formListQuery)
 
 program
-    .command('tell all')
+    .command('tell')
     .description('tells you stats on your entries')
     .option('-l | --learn', 'signifies learning')
     .option('-a | --act', 'signifies action')
