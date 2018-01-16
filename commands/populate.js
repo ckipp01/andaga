@@ -39,17 +39,17 @@ const enterRecords = (obj, callback) => {
 const populate = () => {
     backup.duplicate();
     getTotals( (e) => {
-        console.log('ándaga logs prior to populate = ' + e)
+        console.log('\n -|- ándaga logs prior to populate = ' + e + ' -|-')
         if (fs.existsSync('./gemynd.json')) {
             const jlogs = require('../gemynd.json');
             let jsonLength = (Object.keys(jlogs).length);
             enterRecords(jlogs, () => {
                 getTotals( (l) => {
-                    console.log('ándaga logs after populate = ' + l);
+                    console.log('\n -|- ándaga logs after populate = ' + l + ' -|-');
                 });
             });
         } else {
-            console.log(' -|- ándaga error -|- \n\n gemynd not found');
+            console.log('\n -|- ándaga error -|- \n\n gemynd not found');
         }
     });
 }

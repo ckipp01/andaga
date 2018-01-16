@@ -11,7 +11,7 @@ backup.duplicate = () => {
         let date = year + "-" + month + "-" + day;
         fs.copyFile('gemynd.json', 'backups/' + date + '-gemynd.json', (err) => {
             if (err) {
-                console.log(' -|- ándaga error -|- \n\n');
+                console.log('\n -|- ándaga error -|- \n\n');
                 throw err;
             } else {
                 console.log('\n -|- ándaga backup successful -|-')
