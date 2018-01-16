@@ -7,7 +7,8 @@ const program       = require('commander'),
         list        = require('./commands/list'),
         tell        = require('./commands/tell'),
         populate    = require('./commands/populate'),
-        backup      = require('./commands/backup');
+        backup      = require('./commands/backup'),
+        summarize   = require('./commands/totals');
 
 
 program
@@ -53,6 +54,11 @@ program
     .command('backup')
     .description('backs up your json file')
     .action(backup.duplicate)
+
+program
+    .command('summarize')
+    .description('dashboard time')
+    .action(summarize.getTotals)
 
 program.parse(process.argv);
 
