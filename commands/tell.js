@@ -11,7 +11,7 @@ const getInfo = (options) => {
                 console.log(' -|- ándaga error -|- \n\n' + err);
             } else {
                 let total = row[Object.keys(row)[0]];
-                let whereQuery = e.replace(tellQuery, '');
+                let whereQuery = data.replace(tellQuery, '');
                 console.log('\n -|- ándaga has logged ' + total + ' minutes of time' + whereQuery + ' -|-');
             }
         });
