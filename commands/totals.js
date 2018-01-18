@@ -3,14 +3,13 @@ const sqlite3   = require('sqlite3').verbose(),
         where   = require('./where');
 
 
-
-const getTotals = () => {
+const getTotals = (callback) => {
     const getAllData = 'SELECT * FROM gemynd';
     let options = [];
 
-    where.form(getAllData, options, (e) => {
-        executeAndSort(e, (r) => {
-            console.log(r);
+    where.form(getAllData, options, (data) => {
+        executeAndSort(data, (r) => {
+            callback(r);
         })
     });
 }

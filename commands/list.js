@@ -7,12 +7,12 @@ const formListQuery = (amount, number, options) => {
     let queryLimit;
     (number) ? queryLimit = 'LIMIT ' + number : queryLimit = false;
     
-    where.form(listQuery, options, (e) => {
+    where.form(listQuery, options, (data) => {
         if (amount === 'some') {
-            (queryLimit) ? listQuery = listQuery + ' ORDER BY date DESC ' + queryLimit : listQuery = listQuery + ' ORDER BY date DESC LIMIT 10';
+            (queryLimit) ? listQuery = data + ' ORDER BY date DESC ' + queryLimit : listQuery = data + ' ORDER BY date DESC LIMIT 10';
             getEntries(listQuery);
         } else if (amount === 'all') {
-            getEntries(listQuery + ' ORDER by date DESC');
+            getEntries(data + ' ORDER by date DESC');
         } else {
             console.log('\n -|-|-|- ándaga will tell you some or all but no other -|-|-|-')
         }    

@@ -5,8 +5,8 @@ const sqlite3   = require('sqlite3').verbose(),
 
 const getInfo = (options) => {
     let tellQuery = 'SELECT SUM(time) FROM gemynd';
-    where.form(tellQuery, options, (e) => {
-        db.get(e, (err, row) => {
+    where.form(tellQuery, options, (data) => {
+        db.get(data, (err, row) => {
             if (err) {
                 console.log(' -|- ándaga error -|- \n\n' + err);
             } else {

@@ -7,7 +7,15 @@ const dbLog = (entry, time, options) => {
     let ea = []; //entryArray
     let dbQuery = {};
 
-    (options.date) ? ea[0] = options.date : ea[0] = new Date().toISOString().slice(0,10);
+    if (options.date) {
+        ea[0] = options.date 
+    } else {
+        let d = new Date();
+        let year = d.getFullYear();
+        let month = d.getMonth() + 1;
+        let day = d.getDate();
+        ea[0] = year + '-' + month + '-' + day;
+    }
     if (options.learn) ea[1] = 'learn';
     if (options.act) ea[1] = 'act';
     if (options.rest) ea[1] = 'rest';
@@ -21,11 +29,11 @@ const dbLog = (entry, time, options) => {
 
     db.serialize(() => {    
         db.run(dbQuery.createTable);
-        db.run(dbQuery.insertEntry, (e) => {
-            if (e === null) {
+        db.run(dbQuery.insertEntry, (data) => {
+            if (data === null) {
                 JSONlog.JSONStore(dbQuery.insertEntry);
             } else (
-                console.log(e)
+                console.log(data)
             )
         });
     });
