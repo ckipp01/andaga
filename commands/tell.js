@@ -20,5 +20,4 @@ const getInfo = (options) => {
     });
 }
 
-
 module.exports.getInfo = getInfo;

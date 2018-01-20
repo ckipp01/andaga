@@ -5,44 +5,50 @@ const sqlite3   = require('sqlite3').verbose(),
 
 const getTotals = (callback) => {
     const getAllData = 'SELECT * FROM gemynd';
-    let options = [];
-
-    where.form(getAllData, options, (data) => {
-        executeAndSort(data, (r) => {
-            callback(r);
-        })
-    });
+    executeAndSort(getAllData, (data) => {
+        callback(data);
+    })
 }
 
 const executeAndSort = (query, callback) => {
     let totalsObject = {
-        learn: 0,
-        act: 0,
-        social: 0,
-        rest: 0,
-        unassigned: 0,
+        learn: {
+            total: 0
+        },
+        act:  {
+            total: 0
+        },
+        social: {
+            total: 0
+        },
+        rest: {
+            total: 0
+        },
+        unassigned: {
+            total: 0
+        },
         total: 0
     }
     db.each(query, (err, row) => {
         switch (row.category) {
             case 'learn':
-                totalsObject.learn = totalsObject.learn + row.time;
+                totalsObject.learn.total = totalsObject.learn.total + row.time;
                 totalsObject.total = totalsObject.total + row.time;
                 break;
             case 'act':
-                totalsObject.act = totalsObject.act + row.time;
+                totalsObject.act.total = totalsObject.act.total + row.time;
                 totalsObject.total = totalsObject.total + row.time;
                 break;
             case 'social':
-                totalsObject.social = totalsObject.social + row.time;
+                totalsObject.social.total = totalsObject.social.total + row.time;
                 totalsObject.total = totalsObject.total + row.time;
                 break;
             case 'rest':
-                totalsObject.rest = totalsObject.rest + row.time;
+                totalsObject.rest.total = totalsObject.rest.total + row.time;
                 totalsObject.total = totalsObject.total + row.time;
                 break;
             default:
-                totalsObject.unassigned = totalsObject.unassigned + row.time;
+                totalsObject.unassigned.total = totalsObject.unassigned.total + row.time;
                 totalsObject.total = totalsObject.total + row.time;
         }
     }, () => {

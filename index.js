@@ -8,7 +8,7 @@ const program       = require('commander'),
         tell        = require('./commands/tell'),
         populate    = require('./commands/populate'),
         backup      = require('./commands/backup'),
-        summarize   = require('./commands/summarize');
+        show        = require('./commands/show');
 
 
 program
@@ -56,9 +56,9 @@ program
     .action(backup.duplicate)
 
 program
-    .command('summarize')
+    .command('show')
     .description('dashboard time')
-    .action(summarize.createDashboard)
+    .action(show.createDashboard)
 
 program.parse(process.argv);
 
