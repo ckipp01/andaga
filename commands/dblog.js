@@ -14,7 +14,7 @@ const dbLog = (entry, time, options) => {
         let year = d.getFullYear();
         let month = d.getMonth() + 1;
         let day = d.getDate();
-        ea[0] = year + '-' + month + '-' + day;
+        ea[0] = year + '-' + formatDateItem(month) + '-' + formatDateItem(day);
     }
     if (options.learn) ea[1] = 'learn';
     if (options.act) ea[1] = 'act';
@@ -39,6 +39,14 @@ const dbLog = (entry, time, options) => {
     });
         
     db.close();
+}
+
+const formatDateItem = (num) =>{
+    if (num < 10) {
+        return '0' + num;
+    } else {
+        return num;
+    }
 }
 
 module.exports.dbLog = dbLog;
