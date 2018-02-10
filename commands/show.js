@@ -6,7 +6,6 @@ const blessed = require('blessed'),
 const createDashboard = () => {
     totals.getTotals((data) => {
         displayDashboard(data);
-        // console.log(data);
     })
 }
 
@@ -19,7 +18,7 @@ const displayDashboard = (totObj) => {
 
     let yearChart = grid.set(1,2, 5, 11, contrib.line, {
         style: {   
-            line: 25,
+            line: 50,
             text: 244,
             baseline: 244
         },
@@ -30,13 +29,77 @@ const displayDashboard = (totObj) => {
         label: 'ándaga'
     });
 
-    let year2018 = {
-        title: '2018',
-        x: ['January', 'January'],
-        y: [50, 100, 150, 200]
+    let learnX = [];
+    let learnY = [];
+    let actX = [];
+    let actY = [];
+    let socialX = [];
+    let socailY = [];
+    let restX = [];
+    let restY = [];
+    let unassignedX = [];
+    let unassignedY = [];
+
+    for (type in totObj) {
+        for (values in totObj[type]) {
+            if (values ===  'monthTotal') {
+                switch (type) {
+                    case 'learn':
+                        learnX = Object.keys(totObj[type][values]);
+                        learnY = Object.values(totObj[type][values]);
+                        break;
+                    case 'act':
+                        actX = Object.keys(totObj[type][values]);
+                        actY = Object.values(totObj[type][values]);
+                        break;
+                    case 'social':
+                        socialX = Object.keys(totObj[type][values]);
+                        socialY = Object.values(totObj[type][values]);
+                        break;
+                    case 'rest':
+                        restX = Object.keys(totObj[type][values]);
+                        restY = Object.values(totObj[type][values]);
+                        break;
+                    case 'unassigned':
+                        unassignedX = Object.keys(totObj[type][values]);
+                        unassignedY = Object.values(totObj[type][values]);
+                        break;
+                }
+            }
+        }
     }
 
-    yearChart.setData([year2018])
+    let learnLine = {
+        title: 'learn',
+        x: learnX,
+        y: learnY
+    }
+    let actLine = {
+        title: 'act',
+        x: actX,
+        y: actY.filter(act => act !== 'Unassigned')
+    }
+    let socialLine = {
+        title: 'social',
+        x: socialX,
+        y: socialY
+    }
+    let restLine = {
+        title: 'rest',
+        x: restX,
+        y: restY
+    }
+    let unassignedLine = {
+        title: 'unassigned',
+        x: unassignedX,
+        y: unassignedY
+    }
+
+    // yearChart.setData([learnLine, actLine, socialLine, restLine, unassignedLine])
+    console.log(actX);
+    console.log(actY);
+    // return;
+    yearChart.setData([actLine])
        
     let learnDonut = grid.set(5, 0, 3, 3, contrib.donut, {
         label: 'Learn',
