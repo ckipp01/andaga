@@ -13,94 +13,68 @@ const displayDashboard = (totObj) => {
     const screen = blessed.screen({
         smartCSR: true
     });
-  
+
     let grid = new contrib.grid({rows: 12, cols: 15, screen: screen, hideBorder: true})
 
-    let yearChart = grid.set(1,2, 5, 11, contrib.line, {
-        style: {   
-            line: 50,
-            text: 244,
-            baseline: 244
-        },
-        xLabelPadding: 10,
-        xPadding: 3,
-        showLegend: false,
-        wholeNumbersOnly: false, //true=do not show fraction in y axis
-        label: 'ándaga'
-    });
-
-    let learnX = [];
-    let learnY = [];
-    let actX = [];
-    let actY = [];
-    let socialX = [];
-    let socailY = [];
-    let restX = [];
-    let restY = [];
-    let unassignedX = [];
-    let unassignedY = [];
-
+    let monthArray = []
+    let barValueArray = []
+    let learnArray = [];
+    let actArray = [];
+    let restArray = [];
+    let socialArray = [];
     for (type in totObj) {
-        for (values in totObj[type]) {
-            if (values ===  'monthTotal') {
+        if (typeof totObj[type].monthTotal != 'undefined') {
+            for (key in totObj[type].monthTotal) {
+                if (!monthArray.includes(key)) {
+                    monthArray.push(key);
+                }
                 switch (type) {
                     case 'learn':
-                        learnX = Object.keys(totObj[type][values]);
-                        learnY = Object.values(totObj[type][values]);
+                        learnArray.push(totObj[type].monthTotal[key]);
                         break;
                     case 'act':
-                        actX = Object.keys(totObj[type][values]);
-                        actY = Object.values(totObj[type][values]);
-                        break;
-                    case 'social':
-                        socialX = Object.keys(totObj[type][values]);
-                        socialY = Object.values(totObj[type][values]);
+                        actArray.push(totObj[type].monthTotal[key]);
                         break;
                     case 'rest':
-                        restX = Object.keys(totObj[type][values]);
-                        restY = Object.values(totObj[type][values]);
+                        restArray.push(totObj[type].monthTotal[key]);
                         break;
-                    case 'unassigned':
-                        unassignedX = Object.keys(totObj[type][values]);
-                        unassignedY = Object.values(totObj[type][values]);
+                    case 'social':
+                        socialArray.push(totObj[type].monthTotal[key]);
                         break;
+                    default:
                 }
             }
         }
     }
+    learnArray.forEach((value, index) => { 
+        barValueArray[index] = [value];
+    })
+    actArray.forEach((value, index) => {
+        barValueArray[index].push(value);
+    })
+    restArray.forEach((value, index) => {
+        barValueArray[index].push(value);
+    })
+    socialArray.forEach((value, index) => {
+        barValueArray[index].push(value);
+    })
 
-    let learnLine = {
-        title: 'learn',
-        x: learnX,
-        y: learnY
-    }
-    let actLine = {
-        title: 'act',
-        x: actX,
-        y: actY.filter(act => act !== 'Unassigned')
-    }
-    let socialLine = {
-        title: 'social',
-        x: socialX,
-        y: socialY
-    }
-    let restLine = {
-        title: 'rest',
-        x: restX,
-        y: restY
-    }
-    let unassignedLine = {
-        title: 'unassigned',
-        x: unassignedX,
-        y: unassignedY
-    }
+    let stackedBar = grid.set(0,0, 5, 15, contrib.stackedBar, {
+        label: 'Monthly Breakdown',
+        barWidth: 10,
+        barSpacing: 6,
+        xOffset: 0,
+        height: "50%",
+        width: "100%",
+        barBgColor: [ 'red', 'blue', 'green', 'yellow' ]
+    })
+    screen.append(stackedBar)
+    stackedBar.setData({
+        barCategory: monthArray,
+        stackedCategory: ['Learn', 'Act', 'Rest', 'Social'],
+        data: barValueArray
+       })
 
-    // yearChart.setData([learnLine, actLine, socialLine, restLine, unassignedLine])
-    console.log(actX);
-    console.log(actY);
-    // return;
-    yearChart.setData([actLine])
-       
     let learnDonut = grid.set(5, 0, 3, 3, contrib.donut, {
         label: 'Learn',
         radius: 10,
@@ -151,12 +125,12 @@ const displayDashboard = (totObj) => {
             {percent: totObj.unassigned.total/totObj.total, label: ' -|-' + totObj.unassigned.total + '-|-', color: 25}
         ]
     })
-  
+
     // Quit on Escape, q, or Control-C.
     screen.key(['escape', 'q', 'C-c'], function(ch, key) {
         return process.exit(0);
     });
-  
+
     //   Render the screen.
     screen.render();
 }

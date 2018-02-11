@@ -20,11 +20,11 @@ const executeAndSort = (query, callback) => {
             total: 0,
             monthTotal: {}
         },
-        social: {
+        rest: {
             total: 0,
             monthTotal: {}
         },
-        rest: {
+        social: {
             total: 0,
             monthTotal: {}
         },
@@ -47,14 +47,14 @@ const executeAndSort = (query, callback) => {
                 totalsObject.act.total = totalsObject.act.total + row.time;
                 totalsObject.total = totalsObject.total + row.time;
                 break;
-            case 'social':
-                addMonthValues(totalsObject.social.monthTotal, monthName, row.time);
-                totalsObject.social.total = totalsObject.social.total + row.time;
-                totalsObject.total = totalsObject.total + row.time;
-                break;
             case 'rest':
                 addMonthValues(totalsObject.rest.monthTotal, monthName, row.time);
                 totalsObject.rest.total = totalsObject.rest.total + row.time;
+                totalsObject.total = totalsObject.total + row.time;
+                break;
+            case 'social':
+                addMonthValues(totalsObject.social.monthTotal, monthName, row.time);
+                totalsObject.social.total = totalsObject.social.total + row.time;
                 totalsObject.total = totalsObject.total + row.time;
                 break;
             default:
