@@ -1,3 +1,4 @@
 node_modules/
 gemynd.db
 .vscode/
+*.swp
