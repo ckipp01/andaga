@@ -16,12 +16,12 @@ const displayDashboard = (totObj) => {
 
     let grid = new contrib.grid({rows: 12, cols: 15, screen: screen, hideBorder: true})
 
-    let monthArray = []
-    let barValueArray = []
-    let learnArray = [];
-    let actArray = [];
-    let restArray = [];
-    let socialArray = [];
+    let monthArray      = []
+    let barValueArray   = []
+    let learnArray      = [];
+    let actArray        = [];
+    let restArray       = [];
+    let socialArray     = [];
     for (type in totObj) {
         if (typeof totObj[type].monthTotal != 'undefined') {
             for (key in totObj[type].monthTotal) {
@@ -59,13 +59,13 @@ const displayDashboard = (totObj) => {
         barValueArray[index].push(value);
     })
 
-    let stackedBar = grid.set(0,0, 5, 15, contrib.stackedBar, {
+    let stackedBar = grid.set(1,0, 6, 15, contrib.stackedBar, {
         label: 'Monthly Breakdown',
         barWidth: 10,
-        barSpacing: 6,
-        xOffset: 0,
-        height: "50%",
-        width: "100%",
+        barSpacing: 10,
+        xOffset: 5,
+        height: "100%",
+        width: "50%",
         barBgColor: [ 'red', 'blue', 'green', 'yellow' ]
     })
     screen.append(stackedBar)
@@ -75,47 +75,47 @@ const displayDashboard = (totObj) => {
         data: barValueArray
        })
 
-    let learnDonut = grid.set(5, 0, 3, 3, contrib.donut, {
+    let learnDonut = grid.set(7, 0, 3, 3, contrib.donut, {
         label: 'Learn',
         radius: 10,
         arcWidth: 4,
         remainColor: 'black',
         yPadding: 2,
         data: [
-            {percent: totObj.learn.total/totObj.total, label: ' -|- ' + totObj.learn.total + ' -|-', color: 25  }
+            {percent: totObj.learn.total/totObj.total, label: ' -|- ' + totObj.learn.total + ' -|-', color: 'red'  }
         ]
     })
-    let actDonut = grid.set(5, 3, 3, 3,contrib.donut, {
+    let actDonut = grid.set(7, 3, 3, 3,contrib.donut, {
         label: 'Act',
         radius: 10,
         arcWidth: 4,
         remainColor: 'black',
         yPadding: 2,
         data: [
-            {percent: totObj.act.total/totObj.total, label: ' -|-' + totObj.act.total + '-|-', color: 244}
+            {percent: totObj.act.total/totObj.total, label: ' -|-' + totObj.act.total + '-|-', color: 'blue'}
         ]
         },)
-    let restDonut = grid.set(5, 6, 3, 3, contrib.donut, {
+    let restDonut = grid.set(7, 6, 3, 3, contrib.donut, {
         label: 'Rest',
         radius: 10,
         arcWidth: 4,
         remainColor: 'black',
         yPadding: 2,
         data: [
-            {percent: totObj.rest.total/totObj.total, label: ' -|-' + totObj.rest.total + '-|-', color: 25}
+            {percent: totObj.rest.total/totObj.total, label: ' -|-' + totObj.rest.total + '-|-', color: 'green'}
         ]
     })
-    let socialDonut = grid.set(5, 9, 3, 3, contrib.donut, {
+    let socialDonut = grid.set(7, 9, 3, 3, contrib.donut, {
         label: 'Social',
         radius: 10,
         arcWidth: 4,
         remainColor: 'black',
         yPadding: 2,
         data: [
-            {percent: totObj.social.total/totObj.total, label: ' -|-' + totObj.social.total + '-|-', color: 244}
+            {percent: totObj.social.total/totObj.total, label: ' -|-' + totObj.social.total + '-|-', color: 'yellow'}
         ]
     })
-    let undefinedDonut = grid.set(5, 12, 3, 3, contrib.donut, {
+    let undefinedDonut = grid.set(7, 12, 3, 3, contrib.donut, {
         label: 'Unassigned',
         radius: 10,
         arcWidth: 4,
