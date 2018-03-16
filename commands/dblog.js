@@ -8,7 +8,7 @@ const dbLog = (entry, time, options) => {
     let dbQuery = {};
 
     if (options.date) {
-        ea[0] = options.date 
+        ea[0] = options.date
     } else {
         let d = new Date();
         let year = d.getFullYear();
@@ -27,7 +27,7 @@ const dbLog = (entry, time, options) => {
     dbQuery.createTable = "CREATE TABLE IF NOT EXISTS gemynd (date TEXT, category TEXT, time INT, notes TEXT, place TEXT)";
     dbQuery.insertEntry = "INSERT INTO gemynd VALUES ('" + ea[0] + "', '" + ea[1] + "', " + ea[2] + ", '" + ea[3] + "', '" + ea[4] + "')";
 
-    db.serialize(() => {    
+    db.serialize(() => {
         db.run(dbQuery.createTable);
         db.run(dbQuery.insertEntry, (data) => {
             if (data === null) {
@@ -37,7 +37,7 @@ const dbLog = (entry, time, options) => {
             )
         });
     });
-        
+
     db.close();
 }
 

@@ -62,5 +62,5 @@ program
 
 program.parse(process.argv);
 
-if (program.args.length === 0) 
+if (program.args.length === 0)
     console.log('\n -|-|-|-|-|-  log and ándaga will remember  -|-|-|-|-|-\n |-|-|-|-|-  ask me to list and I will show  -|-|-|-|-|\n -|-|-|-  ask me to tell and I will do the math  |-|-|-\n |-|-|-|-  ask for help and it will be given  |-|-|-|-| ')
