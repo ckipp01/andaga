@@ -66,4 +66,4 @@ You can also call help on each of those commands to show further details and opt
 
 The options are obviously just the options I chose, but I felt that the majority of my activities that I had 100% contorl over (which is the time I'm logging) was able to fit into the following categories: learn, action, rest, and social. I also track the place and time of each activity.
 
-The next step for ándaga is to add a backend endpoint of sorts that can consume the ándaga logs and also provide information back to the client. The very beginning of that can be located [here at andaga-consumer](ht)
+The next step for ándaga is to add a backend endpoint of sorts that can consume the ándaga logs and also provide information back to the client. The very beginning of that can be located [here at andaga-consumer](https://github.com/ckipp01/andaga-consumer).
