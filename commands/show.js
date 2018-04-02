@@ -16,8 +16,8 @@ const displayDashboard = (totObj) => {
 
     let grid = new contrib.grid({rows: 12, cols: 15, screen: screen, hideBorder: true})
 
-    let monthArray      = []
-    let barValueArray   = []
+    let monthArray      = [];
+    let barValueArray   = [];
     let learnArray      = [];
     let actArray        = [];
     let restArray       = [];
@@ -50,14 +50,24 @@ const displayDashboard = (totObj) => {
         barValueArray[index] = [value];
     })
     actArray.forEach((value, index) => {
-        barValueArray[index].push(value);
+        if (barValueArray[index] !== undefined) {
+            barValueArray[index].push(value);
+        } else {
+            barValueArray[index] = [value]
+        }
     })
     restArray.forEach((value, index) => {
-        barValueArray[index].push(value);
-    })
+        if (barValueArray[index] !== undefined) {
+            barValueArray[index].push(value);
+        } else {
+            barValueArray[index] = [value]
+        }    })
     socialArray.forEach((value, index) => {
-        barValueArray[index].push(value);
-    })
+        if (barValueArray[index] !== undefined) {
+            barValueArray[index].push(value);
+        } else {
+            barValueArray[index] = [value]
+        }    })
 
     let stackedBar = grid.set(1,0, 6, 15, contrib.stackedBar, {
         label: 'Monthly Breakdown',
