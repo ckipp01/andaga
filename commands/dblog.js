@@ -8,7 +8,14 @@ const dbLog = (entry, time, options) => {
     let dbQuery = {};
 
     if (options.date) {
-        ea[0] = options.date
+        splitDate = options.date.split('-');
+        if (splitDate.length !== 3 || splitDate[0].length !== 4) {
+            console.log('Not a valid date format');
+            return
+        } else {
+            console.log(splitDate);
+            ea[0] = splitDate[0] + '-' + formatDateItem(Number(splitDate[1])) + '-' + formatDateItem(Number(splitDate[2]));
+        }
     } else {
         let d = new Date();
         let year = d.getFullYear();
