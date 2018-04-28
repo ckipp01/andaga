@@ -13,7 +13,6 @@ const dbLog = (entry, time, options) => {
             console.log('Not a valid date format');
             return
         } else {
-            console.log(splitDate);
             ea[0] = splitDate[0] + '-' + formatDateItem(Number(splitDate[1])) + '-' + formatDateItem(Number(splitDate[2]));
         }
     } else {
