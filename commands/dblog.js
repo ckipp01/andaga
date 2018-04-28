@@ -21,8 +21,8 @@ const dbLog = (entry, time, options) => {
     if (options.rest) ea[1] = 'rest';
     if (options.social) ea[1] = 'social';
     ea[2] = time;
-    ea[3] = entry;
-    (options.place) ? ea[4] = options.place : null;
+    ea[3] = entry.replace("'","''");
+    (options.place) ? ea[4] = options.place.replace("'","''") : null;
 
     dbQuery.createTable = "CREATE TABLE IF NOT EXISTS gemynd (date TEXT, category TEXT, time INT, notes TEXT, place TEXT)";
     dbQuery.insertEntry = "INSERT INTO gemynd VALUES ('" + ea[0] + "', '" + ea[1] + "', " + ea[2] + ", '" + ea[3] + "', '" + ea[4] + "')";
