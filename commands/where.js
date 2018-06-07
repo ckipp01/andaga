@@ -1,5 +1,3 @@
-const fs    = require('fs');
-
 let where = module.exports = {};
 
 where.form = (query, options, callback) => {

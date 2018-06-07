@@ -1,6 +1,6 @@
 const sqlite3   = require('sqlite3').verbose(),
         db      = new sqlite3.Database('gemynd.db'),
-        fs      = require('fs'),
+        fileSystem      = require('fs'),
         backup  = require('./backup');
 
 
@@ -40,7 +40,7 @@ const populate = () => {
     backup.duplicate();
     getTotals( (e) => {
         console.log('\n -|- ándaga logs prior to populate = ' + e + ' -|-')
-        if (fs.existsSync('./gemynd.json')) {
+        if (fileSystem.existsSync('./gemynd.json')) {
             const jlogs = require('../gemynd.json');
             let jsonLength = (Object.keys(jlogs).length);
             enterRecords(jlogs, () => {

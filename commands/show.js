@@ -136,12 +136,10 @@ const displayDashboard = (totObj) => {
         ]
     })
 
-    // Quit on Escape, q, or Control-C.
     screen.key(['escape', 'q', 'C-c'], function(ch, key) {
         return process.exit(0);
     });
 
-    //   Render the screen.
     screen.render();
 }
 

@@ -1,10 +1,10 @@
-const fs    = require('fs');
+const fileSystem    = require('fs');
 
 const JSONStore = (entry, js) => {
 
     let jlogs;
     let numEntries;
-    if (fs.existsSync('./gemynd.json')) {
+    if (fileSystem.existsSync('./gemynd.json')) {
         jlogs = require('../gemynd.json');
         oldEntries = Object.keys(jlogs).length;
         numEntries = oldEntries + 1;
@@ -14,7 +14,7 @@ const JSONStore = (entry, js) => {
         numEntries = 1;
     }
 
-    fs.writeFile('gemynd.json', JSON.stringify(jlogs), 'utf8', (err) => {
+    fileSystem.writeFile('gemynd.json', JSON.stringify(jlogs), 'utf8', (err) => {
         if (err) throw err;
         console.log('\n-|-|-|-  ándaga remembers  -|-|-|- \n -|-|-  total memories : ' + numEntries + '  -|-|-');
     });

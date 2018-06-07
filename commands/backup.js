@@ -1,15 +1,15 @@
-const fs    = require('fs');
+const filesystem    = require('fs');
 
 let backup = module.exports = {};
 
 backup.duplicate = () => {
-    if (fs.existsSync('./gemynd.json')) {
+    if (filesystem.existsSync('./gemynd.json')) {
         let dateObj = new Date();
         let month = dateObj.getUTCMonth() + 1;
         let day = dateObj.getUTCDate();
         let year = dateObj.getUTCFullYear();
         let date = year + "-" + month + "-" + day;
-        fs.copyFile('gemynd.json', 'backups/' + date + '-gemynd.json', (err) => {
+        filesystem.copyFile('gemynd.json', 'backups/' + date + '-gemynd.json', (err) => {
             if (err) {
                 console.log('\n -|- ándaga error -|- \n\n');
                 throw err;
