@@ -9,7 +9,7 @@ const createDashboard = () => {
     })
 }
 
-const displayDashboard = (totObj) => {
+const displayDashboard = (totalsObject) => {
     const screen = blessed.screen({
         smartCSR: true
     });
@@ -22,24 +22,24 @@ const displayDashboard = (totObj) => {
     let actArray        = [];
     let restArray       = [];
     let socialArray     = [];
-    for (type in totObj) {
-        if (typeof totObj[type].monthTotal != 'undefined') {
-            for (key in totObj[type].monthTotal) {
+    for (type in totalsObject) {
+        if (typeof totalsObject[type].monthTotal != 'undefined') {
+            for (key in totalsObject[type].monthTotal) {
                 if (!monthArray.includes(key)) {
                     monthArray.push(key);
                 }
                 switch (type) {
                     case 'learn':
-                        learnArray.push(totObj[type].monthTotal[key]);
+                        learnArray.push(totalsObject[type].monthTotal[key]);
                         break;
                     case 'act':
-                        actArray.push(totObj[type].monthTotal[key]);
+                        actArray.push(totalsObject[type].monthTotal[key]);
                         break;
                     case 'rest':
-                        restArray.push(totObj[type].monthTotal[key]);
+                        restArray.push(totalsObject[type].monthTotal[key]);
                         break;
                     case 'social':
-                        socialArray.push(totObj[type].monthTotal[key]);
+                        socialArray.push(totalsObject[type].monthTotal[key]);
                         break;
                     default:
                 }
@@ -92,7 +92,7 @@ const displayDashboard = (totObj) => {
         remainColor: 'black',
         yPadding: 2,
         data: [
-            {percent: totObj.learn.total/totObj.total, label: ' -|- ' + totObj.learn.total + ' -|-', color: 'red'  }
+            {percent: totalsObject.learn.total/totalsObject.total, label: ' -|- ' + totalsObject.learn.total + ' -|-', color: 'red'  }
         ]
     })
     let actDonut = grid.set(7, 3, 3, 3,contrib.donut, {
@@ -102,7 +102,7 @@ const displayDashboard = (totObj) => {
         remainColor: 'black',
         yPadding: 2,
         data: [
-            {percent: totObj.act.total/totObj.total, label: ' -|-' + totObj.act.total + '-|-', color: 'blue'}
+            {percent: totalsObject.act.total/totalsObject.total, label: ' -|-' + totalsObject.act.total + '-|-', color: 'blue'}
         ]
         },)
     let restDonut = grid.set(7, 6, 3, 3, contrib.donut, {
@@ -112,7 +112,7 @@ const displayDashboard = (totObj) => {
         remainColor: 'black',
         yPadding: 2,
         data: [
-            {percent: totObj.rest.total/totObj.total, label: ' -|-' + totObj.rest.total + '-|-', color: 'green'}
+            {percent: totalsObject.rest.total/totalsObject.total, label: ' -|-' + totalsObject.rest.total + '-|-', color: 'green'}
         ]
     })
     let socialDonut = grid.set(7, 9, 3, 3, contrib.donut, {
@@ -122,7 +122,7 @@ const displayDashboard = (totObj) => {
         remainColor: 'black',
         yPadding: 2,
         data: [
-            {percent: totObj.social.total/totObj.total, label: ' -|-' + totObj.social.total + '-|-', color: 'yellow'}
+            {percent: totalsObject.social.total/totalsObject.total, label: ' -|-' + totalsObject.social.total + '-|-', color: 'yellow'}
         ]
     })
     let undefinedDonut = grid.set(7, 12, 3, 3, contrib.donut, {
@@ -132,7 +132,7 @@ const displayDashboard = (totObj) => {
         remainColor: 'black',
         yPadding: 2,
         data: [
-            {percent: totObj.unassigned.total/totObj.total, label: ' -|-' + totObj.unassigned.total + '-|-', color: 25}
+            {percent: totalsObject.unassigned.total/totalsObject.total, label: ' -|-' + totalsObject.unassigned.total + '-|-', color: 25}
         ]
     })
 
