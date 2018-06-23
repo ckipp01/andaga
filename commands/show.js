@@ -69,7 +69,7 @@ const displayDashboard = (totalsObject) => {
             barValueArray[index] = [value]
         }    })
 
-    let stackedBar = grid.set(1,0, 6, 15, contrib.stackedBar, {
+    let stackedBar = grid.set(0,0, 6, 15, contrib.stackedBar, {
         label: 'Monthly Breakdown',
         barWidth: 10,
         barSpacing: 10,
@@ -133,6 +133,34 @@ const displayDashboard = (totalsObject) => {
         yPadding: 2,
         data: [
             {percent: totalsObject.unassigned.total/totalsObject.total, label: ' -|-' + totalsObject.unassigned.total + '-|-', color: 25}
+        ]
+    })
+
+
+    let table = grid.set(9,0,3,4, contrib.table, {
+        keys: true,
+        fg: 'white',
+        border: 'white',
+        selectedFg: 'white',
+        selectedBg: 'blue',
+        interactive: false,
+        label: 'Selected Totals',
+        width: '30%',
+        height: '30%',
+        columnSpacing: 5, //in chars
+        columnWidth: [25, 20] /*in chars*/ 
+    })
+   
+      //allow control the table with the keyboard
+    table.focus()
+   
+    table.setData({ 
+        headers: [
+              'Totals Type', 
+              'Totals Value'
+            ], 
+        data: [
+            ['Total Recorded Time', totalsObject.learn.total + totalsObject.act.total + totalsObject.rest.total + totalsObject.social.total + totalsObject.unassigned.total + ' Minutes']
         ]
     })
 
