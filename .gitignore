@@ -4,3 +4,4 @@ gemynd.json
 .vscode/
 *.swp
 backups/*
+!backups/.gitkeep 
