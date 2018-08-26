@@ -6,7 +6,7 @@ const sqlite3   = require('sqlite3').verbose(),
 
 
 
-const getTotals = (callback) => {
+const getTotals = (totalRecords) => {
     let total;
     db.serialize(() => {
         db.run('CREATE TABLE IF NOT EXISTS gemynd (date TEXT, category TEXT, time INT, notes TEXT, place TEXT)', () => {
@@ -15,7 +15,7 @@ const getTotals = (callback) => {
                     throw err;
                 } else {
                     total = row[Object.keys(row)[0]];
-                    callback(total);
+                    totalRecords(total);
                 }
             });
         });
@@ -38,14 +38,14 @@ const enterRecords = (obj, callback) => {
 
 const populate = () => {
     backup.duplicate();
-    getTotals( (e) => {
-        console.log('\n -|- ándaga logs prior to populate = ' + e + ' -|-')
+    getTotals( (totalRecords) => {
+        console.log('\n -|- ándaga logs prior to populate = ' + totalRecords + ' -|-')
         if (fileSystem.existsSync('./gemynd.json')) {
             const jlogs = require('../gemynd.json');
             let jsonLength = (Object.keys(jlogs).length);
             enterRecords(jlogs, () => {
-                getTotals( (l) => {
-                    console.log('\n -|- ándaga logs after populate = ' + l + ' -|-');
+                getTotals( (totalRecords) => {
+                    console.log('\n -|- ándaga logs after populate = ' + totalRecords + ' -|-');
                 });
             });
         } else {
