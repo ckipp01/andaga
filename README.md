@@ -1,7 +1,7 @@
 # ándaga - a personal time tracker
 ![Dashboard View of Andaga](images/dashboard.png "andaga show")
 
-At the beginning of 2018 I set out to track all my free time for a year. I was curious about what I could find out about myself via trends in how I spent my time each month. I had also been wanting to build a command line app in node, so this turned out to be a good opporunity to do just that. This project heavily relies on the [Commander](https://github.com/tj/commander.js) and the [Blessed](https://github.com/chjj/blessed) libraries.
+At the beginning of 2018 I set out to track all my free time for a year. I was curious about what I could find out about myself via trends in how I spent my time each month. I had also been wanting to build a command line app in node, so this turned out to be a good opportunity to do just that. There is a slight hiatus in August since I moved to a different country for a new job. Hopefully this will be picked back up after I settle down. This project heavily relies on the [Commander](https://github.com/tj/commander.js) and the [Blessed](https://github.com/chjj/blessed) libraries.
 
  ```
 ❯ andaga
