@@ -13,8 +13,8 @@
   "license": "MIT",
   "dependencies": {
     "blessed": "^0.1.81",
-    "blessed-contrib": "^4.8.5",
-    "commander": "^2.17.1",
+    "blessed-contrib": "^4.8.6",
+    "commander": "^2.18.0",
     "sqlite3": "^3.1.13"
   }
 }
