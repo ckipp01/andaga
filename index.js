@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 'use strict';
 
-const program       = require('commander'),
-        pkg         = require('./package.json'),
-        log         = require('./commands/dblog'),
-        list        = require('./commands/list'),
-        tell        = require('./commands/tell'),
-        populate    = require('./commands/populate'),
-        backup      = require('./commands/backup'),
-        show        = require('./commands/show');
+const program = require('commander'),
+      pkg = require('./package.json'),
+      log = require('./commands/dblog'),
+      list = require('./commands/list'),
+      tell = require('./commands/tell'),
+      populate = require('./commands/populate'),
+      backup = require('./commands/backup'),
+      show = require('./commands/show');
 
 
 program
