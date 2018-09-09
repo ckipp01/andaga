@@ -1,24 +1,21 @@
-const sqlite3 = require('sqlite3').verbose(),
-      db = new sqlite3.Database('gemynd.db'),
-      fileSystem = require('fs'),
-      backup = require('./backup');
-
-
-
+const sqlite3 = require('sqlite3').verbose()
+const db = new sqlite3.Database('gemynd.db')
+const fileSystem = require('fs')
+const backup = require('./backup')
 
 const getTotals = (totalRecords) => {
-  let total;
+  let total
   db.serialize(() => {
     db.run('CREATE TABLE IF NOT EXISTS gemynd (date TEXT, category TEXT, time INT, notes TEXT, place TEXT)', () => {
       db.get('SELECT COUNT(*) FROM gemynd', (err, row) => {
         if (err) {
-          throw err;
+          throw err
         } else {
-          total = row[Object.keys(row)[0]];
-          totalRecords(total);
+          total = row[Object.keys(row)[0]]
+          totalRecords(total)
         }
-      });
-    });
+      })
+    })
   })
 }
 
@@ -27,31 +24,31 @@ const enterRecords = (obj, callback) => {
     for (let key in obj) {
       if (obj.hasOwnProperty(key)) {
         db.run(obj[key], (err) => {
-          if (err)
-            throw err;
-        });
+          if (err) {
+            throw err
+          }
+        })
       }
     }
   })
-  callback();
+  callback()
 }
 
 const populate = () => {
-  backup.duplicate();
-  getTotals( (totalRecords) => {
+  backup.duplicate()
+  getTotals((totalRecords) => {
     console.log('\n -|- ándaga logs prior to populate = ' + totalRecords + ' -|-')
     if (fileSystem.existsSync('./gemynd.json')) {
-      const jlogs = require('../gemynd.json');
-      let jsonLength = (Object.keys(jlogs).length);
+      const jlogs = require('../gemynd.json')
       enterRecords(jlogs, () => {
-        getTotals( (totalRecords) => {
-          console.log('\n -|- ándaga logs after populate = ' + totalRecords + ' -|-');
-        });
-      });
+        getTotals((totalRecords) => {
+          console.log('\n -|- ándaga logs after populate = ' + totalRecords + ' -|-')
+        })
+      })
     } else {
-      console.log('\n -|- ándaga error -|- \n\n gemynd not found');
+      console.log('\n -|- ándaga error -|- \n\n gemynd not found')
     }
-  });
+  })
 }
 
-module.exports.populate = populate;
+module.exports.populate = populate
