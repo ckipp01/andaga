@@ -45,15 +45,15 @@ const dbLog = (entry, time, options) => {
     })
   })
 
-  db.close();
+  db.close()
 }
 
-const formatDateItem = (num) =>{
+const formatDateItem = (num) => {
   if (num < 10) {
-    return '0' + num;
+    return '0' + num
   } else {
-    return num;
+    return num
   }
 }
 
-module.exports.dbLog = dbLog;
+module.exports.dbLog = dbLog
