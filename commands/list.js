@@ -1,11 +1,23 @@
 const sqlite3 = require('sqlite3').verbose()
 const db = new sqlite3.Database('gemynd.db')
 const where = require('./where')
+const utils = require('../utils/utils')
 
 const formListQuery = (amount, number, options) => {
   let listQuery = 'SELECT rowid AS id, date, category, time, notes, place FROM gemynd'
-  let queryLimit;
-  (number) ? queryLimit = 'LIMIT ' + number : queryLimit = false
+  let queryLimit
+
+  if (number) {
+    if (!utils.isNumeric(number)) {
+      console.log(`\n -|-|-|- ${number} should be a number -|-|-|- \n`)
+      console.log('-|-|-|- ándaga will default to 10 -|-|-|-')
+      queryLimit = false
+    } else {
+      queryLimit = `LIMIT ${number}`
+    } 
+  } else {
+    queryLimit = false 
+  }
 
   where.form(listQuery, options, (data) => {
     if (amount === 'some') {
