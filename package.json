@@ -1,6 +1,5 @@
 {
   "name": "andaga",
-  "version": "0.0.1",
   "description": "Personal time and efficiency tracker",
   "bin": {
     "andaga": "index.js"
@@ -11,17 +10,21 @@
   },
   "author": "Chris Kipp",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ckipp01/andaga"
+  },
   "dependencies": {
     "blessed": "^0.1.81",
-    "blessed-contrib": "^4.8.6",
-    "commander": "^2.18.0",
-    "sqlite3": "^3.1.13"
+    "blessed-contrib": "^4.8.8",
+    "commander": "^2.19.0",
+    "sqlite3": "^4.0.4"
   },
   "devDependencies": {
-    "eslint": "^5.5.0",
+    "eslint": "^5.10.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0"
   }
