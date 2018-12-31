@@ -1,8 +1,12 @@
 # ándaga - a personal time tracker
-![Dashboard View of Andaga](images/dashboard.png "andaga show")
+![Dashboard View of Andaga](images/final.png "andaga show")
 
+Now that the year is up, you can see a bit more info about the project [here](https://chronica.xyz/andaga). You'll also be able to see in the [future section](https://chronica.xyz/future) that the goal is to eventually replace this project with the [chronica-core](https://github.com/ckipp01/chronica-core) engine which will store, server, and provide analysis on all things tracked/logged and also an ándaga cli. Some of the analysis will be done by [waka-machine](https://github.com/ckipp01/waka-machine) which is a machine learning project build in node to provide predictions about my habits and records. This will all be part of the [chronica](https://chronica.xyz) ecoystem.
+
+## Background
 At the beginning of 2018 I set out to track all my free time for a year. I was curious about what I could find out about myself via trends in how I spent my time each month. I had also been wanting to build a command line app in node, so this turned out to be a good opportunity to do just that. There was a slight hiatus in August since I moved to a new country for a new job. This project heavily relies on the [Commander](https://github.com/tj/commander.js) and the [Blessed](https://github.com/chjj/blessed) libraries.
 
+## Usage
  ```
 ❯ andaga
 
@@ -65,5 +69,3 @@ You can also call help on each of those commands to show further details and opt
 ```
 
 The options are obviously just the options I chose, but I felt that the majority of my activities that I had 100% control over (which is the time I'm logging) was able to fit into the following categories: learn, action, rest, and social. I also track the place and time of each activity.
-
-The goal is to eventually replace this project with the [ándaga-core](https://github.com/ckipp01/andaga-core) engine which will store, server, and provide analysis on all things tracked/logged. Some of the analysis will be done by [waka-machine](https://github.com/ckipp01/waka-machine) which is a machine learning project build in node to provide predictions about my habits and records. This will all be part of the [chronica](https://github.com/ckipp01/chronica) ecoystem.
