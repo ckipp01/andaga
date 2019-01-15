@@ -1,63 +1,17 @@
-#!/usr/bin/env node
 'use strict'
 
 const program = require('commander')
 const pkg = require('./package.json')
 const log = require('./commands/dblog')
-const list = require('./commands/list')
-const tell = require('./commands/tell')
-const populate = require('./commands/populate')
-const backup = require('./commands/backup')
-const show = require('./commands/show')
 
 program
   .version(pkg.version)
-  .command('log <entry> <time>')
+  .command('log <type> <entry> <time>')
   .description('logs your entries')
-  .option('-l | --learn', 'signifies learning')
-  .option('-a | --act', 'signifies action')
-  .option('-r | --rest', 'signifies rest')
-  .option('-s | --social', 'signifies social')
+  .option('-p | --project <project>', 'specifies the related project', list)
   .option('-d | --date <date>', 'specifies the date if it was not today')
-  .option('-p | --place <place>', 'location activity was done')
+  .option('-l | --place <place>', 'location activity was done')
   .action(log.dbLog)
-
-program
-  .command('list <amount> [number]')
-  .description('lists your entries')
-  .option('-l | --learn', 'signifies learning')
-  .option('-a | --act', 'signifies action')
-  .option('-r | --rest', 'signifies rest')
-  .option('-s | --social', 'signifies social')
-  .option('-d | --date <date>', 'specifies the date')
-  .option('-p | --place <place>', 'location activity was done')
-  .action(list.formListQuery)
-
-program
-  .command('tell')
-  .description('tells you stats on your entries')
-  .option('-l | --learn', 'signifies learning')
-  .option('-a | --act', 'signifies action')
-  .option('-r | --rest', 'signifies rest')
-  .option('-s | --social', 'signifies social')
-  .option('-d | --date <date>', 'specifies the date')
-  .option('-p | --place <place>', 'location activity was done')
-  .action(tell.getInfo)
-
-program
-  .command('populate')
-  .description('runs through the json and populates the db')
-  .action(populate.populate)
-
-program
-  .command('backup')
-  .description('backs up your json file')
-  .action(backup.duplicate)
-
-program
-  .command('show')
-  .description('dashboard time')
-  .action(show.createDashboard)
 
 program.parse(process.argv)
 

@@ -1,8 +1,10 @@
-const sqlite3 = require('sqlite3').verbose()
-const db = new sqlite3.Database('gemynd.db')
 const JSONlog = require('./jsonlog')
 
 const dbLog = (entry, time, options) => {
+  console.log(entry)
+  console.log(time)
+  console.log(options)
+  exit
   let entryArray = []
   let dbQuery = {}
 

@@ -1,9 +1,7 @@
 {
   "name": "andaga",
   "description": "Personal time and efficiency tracker",
-  "bin": {
-    "andaga": "index.js"
-  },
+  "version": "2.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,10 +13,7 @@
     "url": "https://github.com/ckipp01/andaga"
   },
   "dependencies": {
-    "blessed": "^0.1.81",
-    "blessed-contrib": "^4.8.8",
-    "commander": "^2.19.0",
-    "sqlite3": "^4.0.4"
+    "commander": "^2.19.0"
   },
   "devDependencies": {
     "eslint": "^5.10.0",
