@@ -3,15 +3,17 @@
 const program = require('commander')
 const pkg = require('./package.json')
 const log = require('./commands/dblog')
+const utils = require('./utils/utils.js')
 
 program
   .version(pkg.version)
   .command('log <type> <entry> <time>')
   .description('logs your entries')
-  .option('-p | --project <project>', 'specifies the related project', list)
+  .option('-p | --project <project>', 'specifies the related project or projects', utils.list)
   .option('-d | --date <date>', 'specifies the date if it was not today')
-  .option('-l | --place <place>', 'location activity was done')
+  .option('-l | --location <location>', 'location activity was done')
   .action(log.dbLog)
+
 
 program.parse(process.argv)
 

@@ -1,13 +1,15 @@
 const JSONlog = require('./jsonlog')
 
-const dbLog = (entry, time, options) => {
+const dbLog = (type, entry, time, options) => {
+  console.log(type)
   console.log(entry)
   console.log(time)
-  console.log(options)
-  exit
+  console.log(options.project)
+  console.log(options.date)
+  console.log(options.location)
   let entryArray = []
   let dbQuery = {}
-
+  return
   if (options.date) {
     let splitDate = options.date.split('-')
     if (splitDate.length !== 3 || splitDate[0].length !== 4) {
