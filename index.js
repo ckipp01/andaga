@@ -2,18 +2,18 @@
 
 const program = require('commander')
 const pkg = require('./package.json')
-const log = require('./commands/dblog')
-const utils = require('./utils/utils.js')
+const log = require('./commands/log')
+const utils = require('./utils/utils')
 
 program
   .version(pkg.version)
   .command('log <type> <entry> <time>')
   .description('logs your entries')
-  .option('-p | --project <project>', 'specifies the related project or projects', utils.list)
+  .option('-p | --project <project>', 'specifies the related project')
   .option('-d | --date <date>', 'specifies the date if it was not today')
-  .option('-l | --location <location>', 'location activity was done')
-  .action(log.dbLog)
-
+  .option('-l | --location <location>', 'specifies location activity was done')
+  .option('-t | --tag <tag>', 'specifies related projects or tasks', utils.list)
+  .action(log.log)
 
 program.parse(process.argv)
 

@@ -1,30 +1,23 @@
 const JSONlog = require('./jsonlog')
+const utils = require('../utils/utils')
 
-const dbLog = (type, entry, time, options) => {
+const log = (type, entry, time, options) => {
   console.log(type)
   console.log(entry)
   console.log(time)
   console.log(options.project)
   console.log(options.date)
   console.log(options.location)
+  console.log(options.tag)
+
   let entryArray = []
   let dbQuery = {}
+
+  const date = options.date ?
+    utils.extractDate(options.date) :
+    utils.createDate()
+  console.log(date)
   return
-  if (options.date) {
-    let splitDate = options.date.split('-')
-    if (splitDate.length !== 3 || splitDate[0].length !== 4) {
-      console.log('Not a valid date format')
-      return
-    } else {
-      entryArray[0] = splitDate[0] + '-' + formatDateItem(Number(splitDate[1])) + '-' + formatDateItem(Number(splitDate[2]))
-    }
-  } else {
-    let newDate = new Date()
-    let year = newDate.getFullYear()
-    let month = newDate.getMonth() + 1
-    let day = newDate.getDate()
-    entryArray[0] = year + '-' + formatDateItem(month) + '-' + formatDateItem(day)
-  }
   if (options.learn) entryArray[1] = 'learn'
   if (options.act) entryArray[1] = 'act'
   if (options.rest) entryArray[1] = 'rest'
@@ -60,4 +53,4 @@ const formatDateItem = (num) => {
   }
 }
 
-module.exports.dbLog = dbLog
+module.exports = { log }
