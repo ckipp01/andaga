@@ -3,7 +3,7 @@
 const program = require('commander')
 const pkg = require('./package.json')
 const log = require('./commands/log')
-const utils = require('./utils/utils')
+const helper = require('./utils/helper')
 
 program
   .version(pkg.version)
@@ -12,7 +12,7 @@ program
   .option('-p | --project <project>', 'specifies the related project')
   .option('-d | --date <date>', 'specifies the date if it was not today')
   .option('-l | --location <location>', 'specifies location activity was done')
-  .option('-t | --tag <tag>', 'specifies related projects or tasks', utils.list)
+  .option('-t | --tag <tag>', 'specifies related projects or tasks', helper.list)
   .action(log.log)
 
 program.parse(process.argv)
