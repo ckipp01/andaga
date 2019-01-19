@@ -2,8 +2,8 @@
 
 const program = require('commander')
 const pkg = require('./package.json')
-const log = require('./commands/log')
-const helper = require('./utils/helper')
+const log = require('./lib/commands/log.js')
+const helper = require('./lib/utils/helpers.js')
 
 program
   .version(pkg.version)
