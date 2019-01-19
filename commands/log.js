@@ -1,5 +1,4 @@
 const helper = require('../utils/helper')
-const db = require('../utils/db')
 
 const log = (type, entry, time, options) => {
   const date = options.date
@@ -25,7 +24,8 @@ const log = (type, entry, time, options) => {
     log['tags'] = options.tag
   }
 
-  db.storeSummary(log)
+  console.log(log)
+  // make call to andaga-core
 }
 
 module.exports = { log }
