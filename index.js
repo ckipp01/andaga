@@ -9,9 +9,9 @@ program
   .version(pkg.version)
   .command('log <type> <entry> <time>')
   .description('logs your entries')
-  .option('-p | --project <project>', 'specifies the related project')
   .option('-d | --date <date>', 'specifies the date if it was not today')
   .option('-l | --location <location>', 'specifies location activity was done')
+  .option('-p | --project <project>', 'specifies the related project')
   .option('-t | --tag <tag>', 'specifies related projects or tasks', helper.list)
   .action(log.log)
 
