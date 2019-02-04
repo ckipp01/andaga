@@ -6,7 +6,7 @@ const program = require('commander')
 const recall = require('./lib/commands/recall').recall
 
 program
-  .command('log <type> <entry> <time>')
+  .command('log <category> <notes> <time>')
   .description('logs your entries')
   .option('-d | --date <date>', 'specifies the date if it was not today')
   .option('-l | --location <location>', 'specifies location activity was done')
