@@ -1,8 +1,8 @@
 # ándaga - a personal time tracker
 
-After a full year of logging everything locally, I decided to split ándaga into two parts: the [ándaga-core](https://github.com/ckipp01/andaga-core) which serves as the api for my ándaga time tracking system, and the ándaga-cli, which is this project
+In the beginning of 2018 I set out to log all of my time for a year. In that first year I logged a total of 36,880 minutes across 578 logs. It was an attempt to noticed trends, keep track of what I was working on, and to gain insights into my productivity. You can read more about the project [here](https://wiki.chronica.xyz/#andaga) on my [wiki](https://wiki.chronica.xyz).
 
-You can see the system prior to being split up [here](https://github.com/ckipp01/andaga-cli/tree/year-one) and you can read more about my time tracking system [here](https://wiki.chronica.xyz/#andaga) on my [wiki](https://wiki.chronica.xyz).
+After a full year of logging everything locally, I decided to split ándaga into two parts: [ándaga-core](https://github.com/ckipp01/andaga-core) which serves as the api and the ándaga-cli, which is this project.
 
 Currently, ándaga-cli has 3 commands:
 
