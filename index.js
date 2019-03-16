@@ -1,13 +1,19 @@
 'use strict'
 
+const andaga = require('./package.json')
+const { retrieveCategories } = require('./lib/commands/category.js')
 const helper = require('./lib/utils/helpers.js')
 const { log } = require('./lib/commands/log')
-const andaga = require('./package.json')
 const program = require('commander')
 const { recall } = require('./lib/commands/recall')
 
 program
   .version(andaga.version)
+  .command('category')
+  .description('provides a list of categories that have been used so far')
+  .action(retrieveCategories)
+
+program
   .command('log <category> <notes> <time>')
   .description('logs your entries')
   .option('-d | --date <date>', 'specifies the date if it was not today')
