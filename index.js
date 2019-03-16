@@ -1,11 +1,13 @@
 'use strict'
 
 const helper = require('./lib/utils/helpers.js')
-const log = require('./lib/commands/log').log
+const { log } = require('./lib/commands/log')
+const andaga = require('./package.json')
 const program = require('commander')
-const recall = require('./lib/commands/recall').recall
+const { recall } = require('./lib/commands/recall')
 
 program
+  .version(andaga.version)
   .command('log <category> <notes> <time>')
   .description('logs your entries')
   .option('-d | --date <date>', 'specifies the date if it was not today')
@@ -15,12 +17,8 @@ program
   .action(log)
 
 program
-  .command('recall')
+  .command('recall [amount]')
   .description('recalls your latest entries')
-  .option('-d | --date <date>', 'recalls entries on a specific date')
-  .option('-l | --location <location>', 'recalls entries on a certain day')
-  .option('-p | --project <project>', 'recalls entries on a certain project')
-  .option('-ts | --tags <tag>', 'recalls entries related to certain tags')
   .action(recall)
 
 program.parse(process.argv)
