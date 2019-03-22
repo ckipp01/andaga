@@ -1,15 +1,16 @@
 'use strict'
 
 const andaga = require('./package.json')
-const { retrieveCategories } = require('./lib/commands/category.js')
 const helper = require('./lib/utils/helpers.js')
 const { log } = require('./lib/commands/log')
 const program = require('commander')
-const { recall } = require('./lib/commands/recall')
+const { recall } = require('./lib/commands/recall.js')
+const { retrieveCategories } = require('./lib/commands/categories.js')
+const { retrieveProjects } = require('./lib/commands/projects.js')
 
 program
   .version(andaga.version)
-  .command('category')
+  .command('categories')
   .description('provides a list of categories that have been used so far')
   .action(retrieveCategories)
 
@@ -23,9 +24,18 @@ program
   .action(log)
 
 program
+  .command('projects')
+  .description('provides a list of projects that have been logged so far')
+  .action(retrieveProjects)
+
+program
   .command('recall [amount]')
   .description('recalls your latest entries')
   .action(recall)
+
+program
+  .command('*')
+  .action(() => console.error(`I don't know this command`))
 
 program.parse(process.argv)
 
