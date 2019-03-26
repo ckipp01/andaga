@@ -6,8 +6,8 @@ After a full year of logging everything locally, I decided to split ándaga into
 
 Currently, ándaga-cli has 5 commands:
 
-  `andaga categories` used for displaying a list of used categories
-  `andaga log`  used for logging new entries
-  `andaga recall` used for recalling old log entries
-  `andaga projects` used for getting a list of projects that have been logged
-  `andaga tags` used for getting a list of tags that have been used 
+  - `andaga categories` used for displaying a list of used categories
+  - `andaga log`  used for logging new entries
+  - `andaga recall` used for recalling old log entries
+  - `andaga projects` used for getting a list of projects that have been logged
+  - `andaga tags` used for getting a list of tags that have been used 
