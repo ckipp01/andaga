@@ -7,6 +7,7 @@ const program = require('commander')
 const { recall } = require('./lib/commands/recall.js')
 const { retrieveCategories } = require('./lib/commands/categories.js')
 const { retrieveProjects } = require('./lib/commands/projects.js')
+const { retrieveTags } = require('./lib/commands/tags.js')
 
 program
   .version(andaga.version)
@@ -34,8 +35,13 @@ program
   .action(recall)
 
 program
+  .command('tags')
+  .description('provides a list of tags that have been used so far')
+  .action(retrieveTags)
+
+program
   .command('*')
-  .action(() => console.error(`I don't know this command`))
+  .action(() => console.error(`I'm sorry, but I don't know this command`))
 
 program.parse(process.argv)
 

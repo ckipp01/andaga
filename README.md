@@ -4,9 +4,10 @@ In the beginning of 2018 I set out to log all of my time for a year. In that fir
 
 After a full year of logging everything locally, I decided to split ándaga into two parts: [ándaga-core](https://github.com/ckipp01/andaga-core) which serves as the api and the ándaga-cli, which is this project.
 
-Currently, ándaga-cli has 3 commands:
+Currently, ándaga-cli has 5 commands:
 
   `andaga categories` used for displaying a list of used categories
   `andaga log`  used for logging new entries
   `andaga recall` used for recalling old log entries
   `andaga projects` used for getting a list of projects that have been logged
+  `andaga tags` used for getting a list of tags that have been used 
