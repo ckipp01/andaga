@@ -1,7 +1,7 @@
 {
   "name": "andaga",
   "description": "Personal time and efficiency tracker",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "main": "index.js",
   "author": "Chris Kipp",
   "repository": {

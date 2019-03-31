@@ -5,6 +5,7 @@ const helper = require('./lib/utils/helpers.js')
 const { log } = require('./lib/commands/log')
 const program = require('commander')
 const { recall } = require('./lib/commands/recall.js')
+const { red, blue } = require('./lib/utils/colors.js')
 const { retrieveCategories } = require('./lib/commands/categories.js')
 const { retrieveProjects } = require('./lib/commands/projects.js')
 const { retrieveTags } = require('./lib/commands/tags.js')
@@ -41,10 +42,10 @@ program
 
 program
   .command('*')
-  .action(() => console.error(`I'm sorry, but I don't know this command`))
+  .action(() => console.error(red, `I'm sorry, but I don't know this command`))
 
 program.parse(process.argv)
 
 if (program.args.length === 0) {
-  console.log('\n ándaga')
+  console.info(blue, '\n ándaga')
 }
