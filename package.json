@@ -9,7 +9,8 @@
     "url": "https://github.com/ckipp01/andaga-cli"
   },
   "dependencies": {
-    "commander": "2.19.0"
+    "commander": "2.20.0",
+    "request": "2.88.0"
   },
   "devDependencies": {
     "standard": "12.0.1"
