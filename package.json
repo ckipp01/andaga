@@ -8,11 +8,14 @@
     "type": "git",
     "url": "https://github.com/ckipp01/andaga-cli"
   },
+  "scripts": {
+    "lint": "eslint lib/"
+  },
   "dependencies": {
     "commander": "3.0.0",
     "request": "2.88.0"
   },
   "devDependencies": {
-    "standard": "13.1.0"
+    "eslint": "^6.2.2"
   }
 }

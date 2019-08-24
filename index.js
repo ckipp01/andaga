@@ -42,7 +42,7 @@ program
 
 program
   .command('*')
-  .action(() => console.error(red, `I'm sorry, but I don't know this command`))
+  .action(() => console.error(red, 'I\'m sorry, but I don\'t know this command'))
 
 program.parse(process.argv)
 
