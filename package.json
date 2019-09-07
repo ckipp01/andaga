@@ -12,10 +12,10 @@
     "lint": "eslint lib/"
   },
   "dependencies": {
-    "commander": "3.0.0",
+    "commander": "3.0.1",
     "request": "2.88.0"
   },
   "devDependencies": {
-    "eslint": "^6.2.2"
+    "eslint": "^6.3.0"
   }
 }
