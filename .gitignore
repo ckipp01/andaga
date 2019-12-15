@@ -19,6 +19,3 @@ metals.sbt
 metals/project/
 
 .DS_Store
-
-# just for now while I'm developing
-*.conf

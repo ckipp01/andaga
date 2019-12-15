@@ -1,6 +1,5 @@
 package andaga.cli
 
-import scopt.OParser
 import projects.Commands
 
 object Main {
@@ -50,19 +49,13 @@ object Main {
               ),
             opt[String]('p', "project")
               .text("Project that this activity belongs to")
-              .action((project, config) =>
-                config.copy(project = Some(project))
-              ),
+              .action((project, config) => config.copy(project = Some(project))),
             opt[String]('d', "date")
               .text("Date that this activity took place on")
-              .action((date, config) =>
-                config.copy(date = Some(date))
-              ),
+              .action((date, config) => config.copy(date = Some(date))),
             opt[Seq[String]]('t', "tags")
               .text("Tags relating to this activity")
-              .action((tags, config) =>
-                config.copy(tags = tags)
-              )
+              .action((tags, config) => config.copy(tags = tags))
           ),
         help("help")
       )
