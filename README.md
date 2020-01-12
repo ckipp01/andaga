@@ -4,6 +4,10 @@ In the beginning of 2018 I set out to log all of my time for a year. In that fir
 
 After a full year of logging everything locally, I decided to split ándaga into two parts: [ándaga-core](https://github.com/ckipp01/andaga-core) which serves as the api and the ándaga-cli. Ironically, after another full year of logging, I'm in the process of unifying the project back into one repo and re-writing in in Scala.
 
+This app probably isn't useful to anyone else out there, but hopefully it may serve as an
+example of how someone can easily track what they work on, and be inspired to create
+their own.
+
 Currently, ándaga-cli has 5 commands:
 
   - `andaga categories` used for displaying a list of used categories
