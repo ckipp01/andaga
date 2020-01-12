@@ -1,4 +1,4 @@
-# ándaga - a personal time tracker
+# ándaga - My personal time tracker
 
 In the beginning of 2018 I set out to log all of my time for a year. In that first year I logged a total of 36,880 minutes across 578 logs. It was an attempt to noticed trends, keep track of what I was working on, and to gain insights into my productivity. You can read more about the project [here](https://wiki.chronica.xyz/#andaga) on my [wiki](https://wiki.chronica.xyz).
 
