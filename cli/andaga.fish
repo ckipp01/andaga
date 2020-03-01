@@ -84,5 +84,3 @@ switch $argv[1]
   case categories
     get_categories
 end
-
-# vim: ft=fish
