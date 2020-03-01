@@ -1,0 +1,88 @@
+#!/usr/bin/env fish
+
+function log
+  set --local options \
+    'c/category=' \
+    'n/notes=' \
+    'd/duration=!_validate_int' \
+    'l/location=' \
+    'p/project=' \
+    't/tags='
+
+  argparse --min-args 1 --max-args 1 $options -- $argv
+
+  if set --query _flag_category; or return 1; end
+  if set --query _flag_notes; or return 1; end
+  if set --query _flag_duration; or return 1; end
+  if set --query _flag_project; or return 1; end
+
+  # TODO make this a function
+  set -l _flag_tags (string split , $_flag_tags)
+  set -l wrapped (for i in $_flag_tags; echo \"$i\"; end)
+  set -l tags (string join , $wrapped)
+
+  http -b POST $ANDAGA_HOST$ANDAGA_LOG_PATH Authorization:$ANDAGA_AUTH \
+    date=(date +%Y-%m-%d) \
+    category=$_flag_category \
+    time:=$_flag_duration \
+    notes=$_flag_notes \
+    location=$_flag_location \
+    tags:="[$tags]"
+
+end
+
+function recall
+  argparse --max-args 1 'a/amount=!_validate_int' -- $argv
+  set --query _flag_amount; or set --local _flag_amount 1
+  http $ANDAGA_HOST$ANDAGA_LOG_PATH Authorization:$ANDAGA_AUTH amount==$_flag_amount
+end
+
+function get_tags
+  http -b $ANDAGA_HOST$ANDAGA_TAGS_PATH Authorization:$ANDAGA_AUTH
+end
+
+function get_projects
+  http -b $ANDAGA_HOST$ANDAGA_PROJECTS_PATH Authorization:$ANDAGA_AUTH
+end
+
+function get_categories
+  http -b $ANDAGA_HOST$ANDAGA_CATEGORIES_PATH Authorization:$ANDAGA_AUTH
+end
+
+function show_usage
+  printf "Usage: andaga <command> [options]\n\n"
+  printf " Options:\n\n"
+  printf "  -h/--help          Prints help and exits\n\n"
+  printf " Commands:\n\n"
+  printf "  log                Log a new entry\n\n"
+  printf "   Options:\n"
+  printf "    -c, --category   Category to store the log in\n"
+  printf "    -n, --notes      Notes to be stored with the log\n"
+  printf "    -d, --duration   Duraction of the action to be stored\n"
+  printf "    -l, --location   Location of the action to be stored\n"
+  printf "    -p, --project    Project that the log belongs to\n"
+  printf "    -t, --tags       Tags that belong to the log\n\n"
+  printf "  recall             Recall n amount of log entries\n\n"
+  printf "   Options:\n"
+  printf "    -a, --amount     Amount of entries to recall (defaults to 1 if none given)\n\n"
+  printf "  tags               Get a list of all used tags\n"
+  printf "  projects           Get a list of all projects logged so far\n"
+  printf "  categories         Get a list of all categories used so far\n"
+end
+
+switch $argv[1]
+  case -h --help
+    show_usage
+  case log
+    log $argv
+  case recall
+    recall $argv
+  case tags
+    get_tags
+  case projects
+    get_projects
+  case categories
+    get_categories
+end
+
+# vim: ft=fish

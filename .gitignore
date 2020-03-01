@@ -1,22 +1,2 @@
-*.swp
-*.class
-*.log
-
-# sbt specific
-.cache
-.history
-.lib/
-dist/*
-target/
-out/
-lib_managed/
-src_managed/
-project/boot/
-project/plugins/project/
-**/.bloop
-
-.metals/
-metals.sbt
-metals/project/
-
 .DS_Store
+.now
