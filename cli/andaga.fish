@@ -27,6 +27,7 @@ function log
     time:=$_flag_duration \
     notes=$_flag_notes \
     location=$_flag_location \
+    project=$_flag_project \
     tags:="[$tags]"
 
 end
