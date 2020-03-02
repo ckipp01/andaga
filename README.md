@@ -26,7 +26,7 @@ Usage: andaga <command> [options]
 
  Options:
 
-  -h/--help          Prints help and exits
+  -h/--help          Prints help
 
  Commands:
 

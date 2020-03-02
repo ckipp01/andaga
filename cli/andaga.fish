@@ -1,5 +1,11 @@
 #!/usr/bin/env fish
 
+function make_inner_list
+  set -l _split (string split , $argv)
+  set -l wrapped (for i in $_split; echo \"$i\"; end)
+  string join , $wrapped
+end
+
 function log
   set --local options \
     'c/category=' \
@@ -16,10 +22,7 @@ function log
   if set --query _flag_duration; or return 1; end
   if set --query _flag_project; or return 1; end
 
-  # TODO make this a function
-  set -l _flag_tags (string split , $_flag_tags)
-  set -l wrapped (for i in $_flag_tags; echo \"$i\"; end)
-  set -l tags (string join , $wrapped)
+  set -l tags (make_inner_list $_flag_tags)
 
   http -b POST $ANDAGA_HOST$ANDAGA_LOG_PATH Authorization:$ANDAGA_AUTH \
     date=(date +%Y-%m-%d) \
@@ -35,7 +38,7 @@ end
 function recall
   argparse --max-args 1 'a/amount=!_validate_int' -- $argv
   set --query _flag_amount; or set --local _flag_amount 1
-  http $ANDAGA_HOST$ANDAGA_LOG_PATH Authorization:$ANDAGA_AUTH amount==$_flag_amount
+  http -b $ANDAGA_HOST$ANDAGA_LOG_PATH Authorization:$ANDAGA_AUTH amount==$_flag_amount
 end
 
 function get_tags
@@ -53,7 +56,7 @@ end
 function show_usage
   printf "Usage: andaga <command> [options]\n\n"
   printf " Options:\n\n"
-  printf "  -h/--help          Prints help and exits\n\n"
+  printf "  -h/--help          Prints help\n\n"
   printf " Commands:\n\n"
   printf "  log                Log a new entry\n\n"
   printf "   Options:\n"
