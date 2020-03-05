@@ -62,7 +62,7 @@ function show_usage
   printf "   Options:\n"
   printf "    -c, --category   Category to store the log in\n"
   printf "    -n, --notes      Notes to be stored with the log\n"
-  printf "    -d, --duration   Duraction of the action to be stored\n"
+  printf "    -d, --duration   Duration of the action to be stored\n"
   printf "    -l, --location   Location of the action to be stored\n"
   printf "    -p, --project    Project that the log belongs to\n"
   printf "    -t, --tags       Tags that belong to the log\n\n"
