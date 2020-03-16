@@ -4,7 +4,7 @@ function __andaga_make_inner_list
   string join , $wrapped
 end
 
-function log
+function __andaga_log
   set --local options \
     'c/category=' \
     'n/notes=' \
@@ -77,7 +77,7 @@ function andaga -a cmd -d "ándaga cli"
     case -h --help
       __andaga_show_usage
     case log
-      log $cmd
+      __andaga_log $cmd
     case recall
       __andaga_recall $cmd
     case tags
