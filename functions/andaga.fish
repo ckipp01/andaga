@@ -1,6 +1,4 @@
-#!/usr/bin/env fish
-
-function make_inner_list
+function __andaga_make_inner_list
   set -l _split (string split , $argv)
   set -l wrapped (for i in $_split; echo \"$i\"; end)
   string join , $wrapped
@@ -22,7 +20,7 @@ function log
   if set --query _flag_duration; or return 1; end
   if set --query _flag_project; or return 1; end
 
-  set -l tags (make_inner_list $_flag_tags)
+  set -l tags (__andaga_make_inner_list $_flag_tags)
 
   http -b POST $ANDAGA_HOST$ANDAGA_LOG_PATH Authorization:$ANDAGA_AUTH \
     date=(date +%Y-%m-%d) \
@@ -35,25 +33,25 @@ function log
 
 end
 
-function recall
+function __andaga_recall
   argparse --max-args 1 'a/amount=!_validate_int' -- $argv
   set --query _flag_amount; or set --local _flag_amount 1
   http -b $ANDAGA_HOST$ANDAGA_LOG_PATH Authorization:$ANDAGA_AUTH amount==$_flag_amount
 end
 
-function get_tags
+function __andaga_get_tags
   http -b $ANDAGA_HOST$ANDAGA_TAGS_PATH Authorization:$ANDAGA_AUTH
 end
 
-function get_projects
+function __andaga_get_projects
   http -b $ANDAGA_HOST$ANDAGA_PROJECTS_PATH Authorization:$ANDAGA_AUTH
 end
 
-function get_categories
+function __andaga_get_categories
   http -b $ANDAGA_HOST$ANDAGA_CATEGORIES_PATH Authorization:$ANDAGA_AUTH
 end
 
-function show_usage
+function __andaga_show_usage
   printf "Usage: andaga <command> [options]\n\n"
   printf " Options:\n\n"
   printf "  -h/--help          Prints help\n\n"
@@ -74,17 +72,19 @@ function show_usage
   printf "  categories         Get a list of all categories used so far\n"
 end
 
-switch $argv[1]
-  case -h --help
-    show_usage
-  case log
-    log $argv
-  case recall
-    recall $argv
-  case tags
-    get_tags
-  case projects
-    get_projects
-  case categories
-    get_categories
+function andaga -a cmd -d "ándaga cli"
+  switch $cmd[1]
+    case -h --help
+      __andaga_show_usage
+    case log
+      log $cmd
+    case recall
+      __andaga_recall $cmd
+    case tags
+      __andaga_get_tags
+    case projects
+      __andaga_get_projects
+    case categories
+      __andaga_get_categories
+  end
 end
