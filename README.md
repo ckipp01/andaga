@@ -12,15 +12,21 @@ two parts: [ándaga-core](https://github.com/ckipp01/andaga-core) which serves a
 the api and the ándaga-cli. Ironically, after another full year of logging, I
 decided to unify the project again into a single repo. After re-writing the cli
 portion in Scala, I realized it was completely unnecessary and just replaced the
-cli portion of the application with a fish script, which works fantastically.
+cli portion of the application with a small fish package, which works fantastically.
 
 This app probably isn't useful to anyone else out there, but hopefully it may serve as an
 example of how someone can easily track what they work on, and be inspired to create
 their own.
 
-Below you can see what is all available with the script.
+I manage the installation of this with [`fisher`](https://github.com/jorgebucaran/fisher), which allows me to do the following to install both the main function, `andaga` and also the completions.
 
 ```fish
+fisher add ckipp01/andaga
+```
+
+Below you can see what is all available.
+
+```text
 ❯ andaga -h
 Usage: andaga <command> [options]
 
