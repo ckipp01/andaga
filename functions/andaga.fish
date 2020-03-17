@@ -30,7 +30,6 @@ function __andaga_log
     location=$_flag_location \
     project=$_flag_project \
     tags:="[$tags]"
-
 end
 
 function __andaga_recall
@@ -72,14 +71,14 @@ function __andaga_show_usage
   printf "  categories         Get a list of all categories used so far\n"
 end
 
-function andaga -a cmd -d "ándaga cli"
-  switch $cmd[1]
+function andaga -d "ándaga cli"
+  switch $argv[1]
     case -h --help
       __andaga_show_usage
     case log
-      __andaga_log $cmd
+      __andaga_log $argv
     case recall
-      __andaga_recall $cmd
+      __andaga_recall $argv
     case tags
       __andaga_get_tags
     case projects
