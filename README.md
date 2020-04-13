@@ -41,7 +41,7 @@ Usage: andaga <command> [options]
    Options:
     -c, --category   Category to store the log in
     -n, --notes      Notes to be stored with the log
-    -d, --duration   Duraction of the action to be stored
+    -d, --duration   Duration of the action to be stored
     -l, --location   Location of the action to be stored
     -p, --project    Project that the log belongs to
     -t, --tags       Tags that belong to the log
