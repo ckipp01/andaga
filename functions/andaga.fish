@@ -16,7 +16,6 @@ function __andaga_log
   argparse --min-args 1 --max-args 1 $options -- $argv
 
   if set --query _flag_category; or return 1; end
-  echo $_flag_category
   if set --query _flag_notes; or return 1; end
   if set --query _flag_duration; or return 1; end
   if set --query _flag_project; or return 1; end
