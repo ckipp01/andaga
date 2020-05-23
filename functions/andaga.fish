@@ -30,6 +30,8 @@ function __andaga_log
     location=$_flag_location \
     project=$_flag_project \
     tags:="[$tags]"
+
+    __andaga_clear
 end
 
 function __andaga_add_entry
@@ -57,7 +59,12 @@ function __andaga_add_entry
     eturn 1
   end
 
-  echo (date +%s) -c $_flag_category -n \"$_flag_notes\" -p $_flag_project -t $_flag_tags > ~/.andaga.txt
+  echo (date +%s) \
+    -c $_flag_category \
+    -n \"$_flag_notes\" \
+    -p $_flag_project \
+    (if set --query _flag_tags; echo -t $_flag_tags; end) \
+    > ~/.andaga.txt
 end
 
 function __andaga_start
