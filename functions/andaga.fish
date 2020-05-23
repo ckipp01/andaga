@@ -65,6 +65,8 @@ function __andaga_add_entry
     -p $_flag_project \
     (if set --query _flag_tags; echo -t $_flag_tags; end) \
     > ~/.andaga.txt
+
+  echo "Starting to track task."
 end
 
 function __andaga_start
